@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
-    const [tech, setTech] = useState([]);
+  const [tech, setTech] = useState([]);
+  const [newTech, setNewTech] = useState('');
 
-    const [newTech, setNewTech] = useState('');
+  const handleAdd = useCallback(() => {
+    setTech([...tech, newTech]);
+    setNewTech('');
+  }, [newTech, tech]);
 
-    function handleAdd() {
-        setTech([...tech, newTech]);
-        setNewTech('');
+  useEffect(() => {
+    const storageTech = localStorage.getItem('tech');
+
+    if (storageTech) {
+      setTech(JSON.parse(storageTech))
     }
+  }, []);
 
-    useEffect(() => {
-        const storageTech = localStorage.getItem('tech');
-    
-        if (storageTech) {
-          setTech(JSON.parse(storageTech))
-        }
-      }, []);
-    
-      useEffect(() => {
-        localStorage.setItem('tech', JSON.stringify(tech));
-      }, [tech]);
+  useEffect(() => {
+    localStorage.setItem('tech', JSON.stringify(tech));
+  }, [tech]);
 
-    return (
+  const techSize = useMemo(() => tech.length, [tech]);
+
+  return (
     <>
-        <ul>
-        {tech.map(t => (
-        <li key={t}>{t}</li>
-        ))}
-        
-        </ul>
-        <input value={newTech} onChange={e => setNewTech(e.target.value)} />
-        <button type="button" onClick={handleAdd}>Adicionar</button>
+      <ul>
+        { tech.map(t => <li key={t}>{t}</li>) }
+      </ul>
+      <input value={newTech} onChange={e => setNewTech(e.target.value)} />
+      <button type='button' onClick={handleAdd}>Adicionar</button>
+      <br/>
+      <br/>
+      <strong>Você tem {techSize} tecnologia(s).</strong>
     </>
-    );
+  );
 }
 
 export default App;
