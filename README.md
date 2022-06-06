@@ -19,7 +19,7 @@ Funcionalidade que permite adicionar uma lista de tecnologias
 
 ### `Como usar?`
 
-Insira as tecnologias através do botão "adicionar"
+Escreva o nome das tecnologias e insira as informações através do botão "adicionar"
 
 ### `Demonstração`
 
