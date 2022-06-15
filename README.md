@@ -15,7 +15,7 @@ Funcionalidade que permite adicionar uma lista de tecnologias
 
 ### `Como iniciar?`
 
-1- Defina em seu terminal o diretório "*react-hooks" e digite "*yarn start*" para inicar a aplicação.
+1- Defina em seu terminal o diretório "*react-hooks*" e digite "*yarn start*" para inicar a aplicação.
 
 ### `Como usar?`
 
